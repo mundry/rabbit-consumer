@@ -86,20 +86,21 @@ if __name__ == "__main__":
     setup_logging()
     channel, connection = setup_consumer()
 
-    try:
-        logger.info("[x] Waiting for messages on RABBIT.")
-        channel.start_consuming()
-        logger.info("[x] Stopped consuming. Exiting.")
-    except KeyboardInterrupt:
-        logger.info(
-            "[x] Received interrupt. Stopping consuming messages and closing connection.",
-        )
-        channel.stop_consuming()
-    except ChannelClosed:
-        logger.exception("[x] Channel closed.")
-    except:
-        logger.exception("[x] Unexpected error.")
-    finally:
-        connection.close()
+    while True:
+        try:
+            logger.info("[x] Waiting for messages on RABBIT.")
+            channel.start_consuming()
+            logger.info("[x] Stopped consuming. Exiting.")
+        except KeyboardInterrupt:
+            logger.info(
+                "[x] Received interrupt. Stopping consuming messages and closing connection.",
+            )
+            channel.stop_consuming()
+        except ChannelClosed:
+            logger.exception("[x] Channel closed.")
+        except:
+            logger.exception("[x] Unexpected error.")
+        finally:
+            connection.close()
 
-    logger.info("[x] Finished program. Exiting.")
+        sleep(3)
