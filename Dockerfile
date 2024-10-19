@@ -18,11 +18,12 @@ RUN --mount=type=cache,target=/root/.cache/uv \
 
 FROM docker.io/library/python:3.12.7-alpine3.20
 
+WORKDIR /app
+
 # Copy the application from the builder
 COPY --from=builder /app /app
 
 # Place executables in the environment at the front of the path
 ENV PATH="/app/.venv/bin:$PATH"
 
-# Run the FastAPI application by default
 CMD ["python", "/app/consumer.py"]
