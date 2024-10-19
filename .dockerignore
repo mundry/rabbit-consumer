@@ -1,0 +1,12 @@
+.dockerignore
+.git
+.github
+.gitignore
+.idea
+.mypy_cache
+.ruff_cache
+.venv
+Dockerfile
+README.md
+pyproject.toml
+uv.lock
