@@ -12,9 +12,6 @@ RUN --mount=type=cache,target=/root/.cache/uv \
 
 ADD . /app
 
-RUN --mount=type=cache,target=/root/.cache/uv \
-    uv sync --frozen --no-dev
-
 
 FROM docker.io/library/python:3.12.7-alpine3.20
 
