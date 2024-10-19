@@ -8,6 +8,7 @@ from typing import TYPE_CHECKING
 
 import pika
 import yaml
+from pika.exceptions import ChannelClosed
 
 if TYPE_CHECKING:
     from pika.adapters.blocking_connection import BlockingChannel
@@ -94,6 +95,11 @@ if __name__ == "__main__":
             "[x] Received interrupt. Stopping consuming messages and closing connection.",
         )
         channel.stop_consuming()
+    except ChannelClosed:
+        logger.exception("[x] Channel closed.")
+    except:
+        logger.exception("[x] Unexpected error.")
+    finally:
         connection.close()
 
     logger.info("[x] Finished program. Exiting.")
