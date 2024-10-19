@@ -12,6 +12,7 @@ RUN --mount=type=cache,target=/root/.cache/uv \
 
 ADD . /app
 
+RUN rm pyproject.toml uv.lock
 
 FROM docker.io/library/python:3.12.7-alpine3.20
 
