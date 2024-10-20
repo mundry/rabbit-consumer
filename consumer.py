@@ -35,7 +35,7 @@ def get_env(name) -> str:
 
 def callback(ch, method, properties, body) -> None:
     payload = body.decode("utf-8").strip()
-    logger.info("Received %r from queue", payload)
+    logger.info("[x] Received %r from queue", payload)
     title, sleeptime = payload.split(";", 1)
 
     logger.info("[x] Received %r", title)
