@@ -11,6 +11,12 @@ wheels = [
 ]
 
 [[package]]
+name = "pika-stubs"
+version = "0.1.3"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/c6/7a/0ce91b1507e1a88e104bddd2b64d47cc80a9eda53b7e74bb5a6038c926ae/pika-stubs-0.1.3.tar.gz", hash = "sha256:aaa78fa9f52eb3591b6073fbbe2607567405d1857be268d447bea252e22dd6cf", size = 15155 }
+
+[[package]]
 name = "pyyaml"
 version = "6.0.2"
 source = { registry = "https://pypi.org/simple" }
@@ -45,8 +51,16 @@ dependencies = [
     { name = "pyyaml" },
 ]
 
+[package.dev-dependencies]
+dev = [
+    { name = "pika-stubs" },
+]
+
 [package.metadata]
 requires-dist = [
     { name = "pika", specifier = ">=1.3.2" },
     { name = "pyyaml", specifier = ">=6.0.2" },
 ]
+
+[package.metadata.requires-dev]
+dev = [{ name = "pika-stubs", specifier = ">=0.1.3" }]
