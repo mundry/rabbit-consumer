@@ -43,8 +43,14 @@ def callback(ch, method, properties, body) -> None:
     logger.info("[x] Sleeping for %s seconds to simulate processing.", sleeptime)
     sleep(int(sleeptime))
 
+    logger.info("Connection status: %s, %s", connection.is_open, connection.is_closed)
+    logger.info("Channel status: %s, %s", ch.is_open, ch.is_closed)
+
     logger.info("[x] Finished processing %r. Sending acknowledgement.", title)
-    ch.basic_ack(delivery_tag=method.delivery_tag)
+    try:
+        ch.basic_ack(delivery_tag=method.delivery_tag)
+    except:
+        logger.exception("[x] Failed to acknowledge delivery: %r", method)
 
     logger.info(
         "[x] Acknowledgment sent for %r (%r). Exiting callback.",
