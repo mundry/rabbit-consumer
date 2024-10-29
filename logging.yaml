@@ -14,7 +14,9 @@ loggers:
     handlers: [console]
     propagate: no
   pika:
-    level: DEBUG  
+    level: INFO
+  pika.heartbeat:
+    level: DEBUG
 root:
   level: DEBUG
   handlers: [console]
